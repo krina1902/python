@@ -1,0 +1,20 @@
+s = "Krina Antala"
+
+print(len(s))
+print(s.capitalize())
+print(s.casefold())
+print(s.count("a"))
+print(s.center(40,"%"))
+print(s.endswith("ala"))
+print(s.index(" "))
+print("tops1234".isalnum())
+print("tops".isalpha())
+print("123".isnumeric())
+print(s.istitle())
+print("Hello".replace("l","w"))
+print(" ".isspace())
+print(s.lower())
+print(s.swapcase())
+print(s.upper())
+print(s.startswith("Kri"))
+

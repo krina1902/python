@@ -13,3 +13,4 @@ for i in range(10):
     lucky.append(num)
     l.remove(num)
 print(lucky)
+print(l)

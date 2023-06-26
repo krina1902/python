@@ -6,3 +6,6 @@ print(matrix)
 
 numbers=[i*10 for i in range(11)]
 print(numbers)
+
+no=[a for a in range(21,31)]
+print(no)

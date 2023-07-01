@@ -25,7 +25,7 @@ if choice==1:
     actype="saving"
 elif choice==2:
     actype="current"
-if choice==3:
+elif choice==3:
     actype="NRI"
 
 b1.accountdetail(cname,accno,actype)

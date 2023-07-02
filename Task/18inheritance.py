@@ -14,24 +14,20 @@ class employee1(person):
         self.dob=dob
     def display(self):
         print(self.name,self.idno,self.age,self.dob)
-class employee12(person):
+class employee12(Employee,employee1):
     def detail4(self,gender):
         self.gender=gender
     def display3(self):
         print(self.name,self.idno,self.gender)
 
 
-a=employee1()
-a.detail1("krina",23)
-a.detail3(24,"19-02-1998")
-a.display()
 
-b=Employee()
-b.detail2(50000,"intern")
-b.detail1("krina",23)
-b.display1()
 
 c=employee12()
+c.detail3(24,"19-02-1998")
+c.detail2(50000,"intern")
 c.detail4("female")
 c.detail1("krina",23)
 c.display3()
+c.display()
+c.display1()

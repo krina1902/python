@@ -1,5 +1,5 @@
 class person:
-    def detail1(self,name,idno):
+        def detail1(self,name,idno):
         self.name=name
         self.idno=idno
 class Employee(person):

@@ -1,5 +1,56 @@
 from tkinter import *
+import mysql.connector
+import tkinter.messagebox as msg
 
+def create_conn():
+    return mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="python_tkinter"
+        )
+def insert_data():
+    if e_name.get()=="" or e_dept.get()=="" or e_salary.get()=="":
+         msg.showinfo("Insert Status","All Fields Are Mandatory")
+    else:
+        conn=create_conn()
+        cursor=conn.cursor()
+        query="insert into emp(name,dept,salary) values(%s,%s,%s)"
+        argu=(e_name.get(),e_dept.get(),e_salary.get())
+        cursor.execute(query,argu)
+        conn.commit()
+        conn.close()
+        e_name.delete(0,"end")
+        e_dept.delete(0,"end")
+        e_salary.delete(0,"end")
+        msg.showinfo("Insert Status","Insert Data Successfully")
+
+def search_data():
+     e_name.delete(0,"end")
+     e_dept.delete(0,"end")
+     e_salary.delete(0,"end")
+     if e_id=="":
+        msg.showinfo("Search Status","Id is Mandatory")
+     else:
+        conn=create_conn()
+        cursor=conn.cursor()
+        query="select * from emp where id=%s"
+        argu=(e_id.get(),)
+        cursor.execute(query,argu)
+        row=cursor.fetchall()
+        if row:
+            for i in row:
+                e_name.insert(0,i[1])
+                e_dept.insert(0,i[2])
+                e_salary.insert(0,i[3])
+        else:
+            msg.showinfo("Search Status","Id Is Not Found")
+        conn.close()
+        
+
+
+
+        
 root=Tk()
 root.geometry("550x500")
 root.title("Desktop Application")
@@ -24,10 +75,10 @@ e_salary=Entry()
 e_salary.place(x=190,y=210,width=300)
 
 
-insert=Button(root,text="INSERT",bg="black",fg="white",font=("Forte",20))
+insert=Button(root,text="INSERT",bg="black",fg="white",font=("Forte",20),command=insert_data)
 insert.place(x=50,y=300)
 
-search=Button(root,text="SEARCH",bg="black",fg="white",font=("Forte",20))
+search=Button(root,text="SEARCH",bg="black",fg="white",font=("Forte",20),command=search_data)
 search.place(x=300,y=300)
 
 update=Button(root,text="UPDATE",bg="black",fg="white",font=("Forte",20))

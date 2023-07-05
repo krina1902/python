@@ -63,7 +63,23 @@ def update_data():
         e_salary.delete(0,"end")
         e_id.delete(0,"end")
         msg.showinfo("Update Status","Data Updated Successfully")
-        
+
+def delete_data():
+    if e_id.get()=="":
+        msg.showinfo("Delete Status","Id Is Mandatory")
+    else:
+        conn=create_conn()
+        cursor=conn.cursor()
+        query="delete from emp where id=%s"
+        argu=(e_id.get(),)
+        cursor.execute(query,argu)
+        conn.commit()
+        conn.close()
+        e_name.delete(0,"end")
+        e_dept.delete(0,"end")
+        e_salary.delete(0,"end")
+        e_id.delete(0,"end")
+        msg.showinfo("Delete Status","Data Deleted Successfully")
 
 
 
@@ -71,6 +87,7 @@ def update_data():
 root=Tk()
 root.geometry("550x500")
 root.title("Desktop Application")
+root.resizable(width=False ,height=False)
 
 l_id=Label(root,text="ID",font=("Forte",20))
 l_id.place(x=50,y=50)
@@ -101,5 +118,5 @@ search.place(x=300,y=300)
 update=Button(root,text="UPDATE",bg="black",fg="white",font=("Forte",20),command=update_data)
 update.place(x=50,y=400)
 
-delete=Button(root,text="DELETE",bg="black",fg="white",font=("Forte",20))
+delete=Button(root,text="DELETE",bg="black",fg="white",font=("Forte",20),command=delete_data)
 delete.place(x=300,y=400)

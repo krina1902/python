@@ -46,6 +46,23 @@ def search_data():
         else:
             msg.showinfo("Search Status","Id Is Not Found")
         conn.close()
+
+def update_data():
+    if e_id.get()=="" or e_name.get()=="" or e_dept.get()=="" or e_salary.get()=="":
+        msg.showinfo("Update Status","All Fields Are Mandatory")
+    else:
+        conn=create_conn()
+        cursor=conn.cursor()
+        query="update emp set name=%s,dept=%s,salary=%s where id=%s"
+        argu=(e_name.get(), e_dept.get(),e_salary.get(),e_id.get())
+        cursor.execute(query,argu)
+        conn.commit()
+        conn.close()
+        e_name.delete(0,"end")
+        e_dept.delete(0,"end")
+        e_salary.delete(0,"end")
+        e_id.delete(0,"end")
+        msg.showinfo("Update Status","Data Updated Successfully")
         
 
 
@@ -81,7 +98,7 @@ insert.place(x=50,y=300)
 search=Button(root,text="SEARCH",bg="black",fg="white",font=("Forte",20),command=search_data)
 search.place(x=300,y=300)
 
-update=Button(root,text="UPDATE",bg="black",fg="white",font=("Forte",20))
+update=Button(root,text="UPDATE",bg="black",fg="white",font=("Forte",20),command=update_data)
 update.place(x=50,y=400)
 
 delete=Button(root,text="DELETE",bg="black",fg="white",font=("Forte",20))

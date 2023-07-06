@@ -120,3 +120,5 @@ update.place(x=50,y=400)
 
 delete=Button(root,text="DELETE",bg="black",fg="white",font=("Forte",20),command=delete_data)
 delete.place(x=300,y=400)
+
+root.mainloop()
